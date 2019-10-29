@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Listado de Pedidos:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Listado de Pedidos </span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row">
+
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Limpiar" update="lstPedido"
+							actionListener="#{pedidoController.limpiarPedido()}"
+							styleClass="btn btn-default" ajax="false" />
+
+						<p:commandButton value="Nuevo"
+							action="#{pedidoController.nuevoPedido()}"
+							styleClass="btn btn-primary" ajax="false" />
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+
+						<p:dataTable id="lstPedido" var="pedido"
+							value="#{pedidoController.listaPedidos}" paginator="true"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id">
+								<h:outputText value="#{pedido.idPedido}" />
+							</p:column>
+
+							<p:column headerText="FechaPedido">
+								<h:outputText value="#{pedido.fechaPedido}" />
+							</p:column>
+							
+						
+						<p:column headerText="Encargado">
+								<h:outputText value="#{pedido.encargado.nameEncargado}" />
+						</p:column>
+						
+						<p:column headerText="Prioridad">
+								<h:outputText value="#{pedido.prioridadPedido}" />
+							</p:column>
+						
+						<div class="tabla">
+                            <p:column exportable="false">
+								<h:commandLink action="lstPedido" value="Eliminar"
+									actionListener="#{pedidoController.eliminar(pedido)}" />
+							</p:column>
+
+							<p:column  exportable="false">
+								<h:commandLink action="pedido" value="Actualizar"
+									actionListener="#{pedidoController.mostrar(pedido)}" />
+							</p:column>	
+							</div>
+			
+						</p:dataTable>						
+					</div>
+
+				</div>
+			</div>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,21 @@
+*{
+	 font-family: "calibri", Garamond, 'Comic Sans';
+	  font-weight: lighter;
+	 
+}
+
+.col-md-3 li
+{ padding: 20px;
+	display:inline-block;
+	list-style: none;}
+	
+.col-sm-8 
+{
+	 text-align: left;
+	 padding:10px;
+}
+
+.col-sm-12 dataTable
+{
+	color:blue;
+}
